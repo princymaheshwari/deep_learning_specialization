@@ -21,7 +21,7 @@ def generate_exposure_levels(no_of_people):
     """
 
     density_factor = np.random.uniform(0.5, 2.0)
-    area_bias = np.log(density_factor) * 2
+    area_bias = np.log(density_factor) * 5
     return np.random.randn(no_of_people) * 2 + area_bias
 
 # Step 3: Coverting exposure levels to infection probability
@@ -66,11 +66,11 @@ def simulate_area(population):
 
 # Step 8: Alert system for each area
 def get_alert_level(infection_rate):
-    if infection_rate < 0.45:
+    if infection_rate < 0.3:
         return "🟢 Low Risk"
-    elif infection_rate < 0.55:
+    elif infection_rate < 0.6:
         return "🟡 Moderate Risk"
-    elif infection_rate < 0.65:
+    elif infection_rate < 0.8:
         return "🟠 High Risk"
     else:
         return "🔴 Critical"
@@ -90,9 +90,9 @@ def run_simulation(geojson_path):
         results.append({
             "name": area,
             "population" : population,
-            "Infected People": no_of_infected_people,
-            "Infection Rate": infection_rate,
-            "Alert Level": alert_level
+            "infected_people": no_of_infected_people,
+            "infection_rate": infection_rate,
+            "alert_level": alert_level
         })
 
     return results
